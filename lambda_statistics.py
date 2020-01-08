@@ -1,5 +1,4 @@
-
-import boto3
+import boto3, sys
 from datetime import datetime, timedelta
 
 class Lambda_Statistics():
@@ -9,30 +8,27 @@ class Lambda_Statistics():
     starttime = datetime.utcnow() - timedelta(days=7)
     endtime = datetime.utcnow()
 
-    # def __init__(self, client):
-    #     self.client = self.create_handler()
     
     def create_handler(self, service):
         return boto3.client(service)
   
-    def getmetricdata(self, **event):
+    def getmetricdata(self, client, **event):
         if event.get('NextToken') is None or event.get('NextToken') == '':
-            return self.client.get_metric_data(MetricDataQueries = 
+            return client.get_metric_data(MetricDataQueries = 
                 event.get("MetricDataQueries"),
                 StartTime=event.get("StartTime"),
                 EndTime=event.get("EndTime"),
                 MaxDatapoints=5000
                 )
         else:
-            return self.client.get_metric_data(MetricDataQueries = 
+            return client.get_metric_data(MetricDataQueries = 
                 event.get("MetricDataQueries"),
                 StartTime=event.get("StartTime"),
                 EndTime=event.get("EndTime"),
                 NextToken=event.get("NextToken"),
                 MaxDatapoints=5000
             )
-    def list_functions(self):
-        lambada_hd = self.create_handler('lambda')
+    def list_functions(self, lambada_hd):
 
         paginator = lambada_hd.get_paginator('list_functions')
 
@@ -41,8 +37,11 @@ class Lambda_Statistics():
                 yield function_name['FunctionName']
 
     def list_metrics(self):
-        for lambda_function in self.list_functions(self):
+        lambada_hd = self.create_handler('lambda')
+        client = self.create_handler('cloudwatch')
+        for lambda_function in self.list_functions(lambada_hd):
             results = self.getmetricdata(
+                client,
                 MetricDataQueries=[
                     {
                         'Id': 'invocations',
@@ -105,26 +104,41 @@ class Lambda_Statistics():
                         'ReturnData': True
                     }
                 ],
-                StartTime=starttime,
-                EndTime=endtime,
+                StartTime=self.starttime,
+                EndTime=self.endtime,
                 ScanBy='TimestampDescending',
                 NextToken = ''
             )
+            # print(results, lambda_function)
+            yield(results, lambda_function)
+        
     def display_results(self):
+        print('{:<80} | {:<25} | {:<11} | {:<14} | {:<17}'.format(
+            'Function Name','Invocations','Errors', 'Duration (sec)','Concurrency (est)')
+            )
+        print('-'*159)
         list_metrics = self.list_metrics()
-
-        if list_metrics['MetricDataResults'][0]['Timestamps']:
-            for i in range(len(list_metrics['MetricDataResults'][0]['Timestamps'])):
-                print('{:<80} | {:<25} | {:>11.3f} | {:>14.2f} | {:>17.1f}'.format(
-                    func_name['FunctionName'],
-                    str(response['MetricDataResults'][0]['Timestamps'][i]), 
-                    response['MetricDataResults'][0]['Values'][i],
-                    response['MetricDataResults'][1]['Values'][i]/1000,
-                    round(response['MetricDataResults'][0]['Values'][i]/60 *response['MetricDataResults'][1]['Values'][i]/1000)
+        for each_item in list_metrics:
+            if each_item[0]['MetricDataResults'][0]['Timestamps']:
+                # for i in range(len(each_item[0]['MetricDataResults'][0]['Timestamps'])):
+                print('{:<80}  | {:<25} | {:>11.3f} | {:>14.2f} | {:>17.1f}'.format(
+                    each_item[1], 
+                    str(sum(each_item[0]['MetricDataResults'][0]['Values'])),
+                    sum(each_item[0]['MetricDataResults'][1]['Values']),
+                    sum(each_item[0]['MetricDataResults'][2]['Values'])/1000,
+                    round(sum(each_item[0]['MetricDataResults'][0]['Values'])/60 * sum(each_item[0]['MetricDataResults'][1]['Values'])/1000)
                 )
                 )
-        else:
-            print('{:<80} | {:<25} | {:<11} | {:<14} | {:<17}'.format(func_name['FunctionName'],'No Data','','',''))
+            else:
+                print('{:<80} | {:<25} | {:<11} | {:<14} | {:<17}'.format(each_item[1],'No Data','','',''))
+            
+            if each_item[0]['MetricDataResults'][0]['StatusCode']=='PartialData':
+                next_token=each_item[0]['NextToken']
+            else:
+                next_token=None
 
 
+# Create the handler and execute the results
 
+a = Lambda_Statistics()
+a.display_results()
