@@ -1,0 +1,46 @@
+action: GLOB, msg: packaging
+cwd: /Users/mahaakutty/code_space/repos/MyPublicRepo
+cmd: /Users/mahaakutty/Library/homebrew/opt/python/bin/python3.7 setup.py sdist --formats=zip --dist-dir .tox/dist
+running sdist
+running egg_info
+writing tox_example.egg-info/PKG-INFO
+writing dependency_links to tox_example.egg-info/dependency_links.txt
+writing top-level names to tox_example.egg-info/top_level.txt
+package init file 'tests/__init__.py' not found (or not a regular file)
+reading manifest file 'tox_example.egg-info/SOURCES.txt'
+writing manifest file 'tox_example.egg-info/SOURCES.txt'
+running check
+warning: check: missing required meta-data: url
+
+warning: check: missing meta-data: if 'author' supplied, 'author_email' must be supplied too
+
+creating tox-example-0.0.1
+creating tox-example-0.0.1/lambda_statistics
+creating tox-example-0.0.1/tests
+creating tox-example-0.0.1/tox_example.egg-info
+copying files to tox-example-0.0.1...
+copying README.md -> tox-example-0.0.1
+copying setup.py -> tox-example-0.0.1
+copying lambda_statistics/__init__.py -> tox-example-0.0.1/lambda_statistics
+copying lambda_statistics/exception.py -> tox-example-0.0.1/lambda_statistics
+copying lambda_statistics/lambda_statistics.py -> tox-example-0.0.1/lambda_statistics
+copying tests/test_lambda_statistics.py -> tox-example-0.0.1/tests
+copying tox_example.egg-info/PKG-INFO -> tox-example-0.0.1/tox_example.egg-info
+copying tox_example.egg-info/SOURCES.txt -> tox-example-0.0.1/tox_example.egg-info
+copying tox_example.egg-info/dependency_links.txt -> tox-example-0.0.1/tox_example.egg-info
+copying tox_example.egg-info/top_level.txt -> tox-example-0.0.1/tox_example.egg-info
+Writing tox-example-0.0.1/setup.cfg
+creating '.tox/dist/tox-example-0.0.1.zip' and adding 'tox-example-0.0.1' to it
+adding 'tox-example-0.0.1/PKG-INFO'
+adding 'tox-example-0.0.1/README.md'
+adding 'tox-example-0.0.1/setup.py'
+adding 'tox-example-0.0.1/setup.cfg'
+adding 'tox-example-0.0.1/tox_example.egg-info/PKG-INFO'
+adding 'tox-example-0.0.1/tox_example.egg-info/SOURCES.txt'
+adding 'tox-example-0.0.1/tox_example.egg-info/top_level.txt'
+adding 'tox-example-0.0.1/tox_example.egg-info/dependency_links.txt'
+adding 'tox-example-0.0.1/lambda_statistics/exception.py'
+adding 'tox-example-0.0.1/lambda_statistics/__init__.py'
+adding 'tox-example-0.0.1/lambda_statistics/lambda_statistics.py'
+adding 'tox-example-0.0.1/tests/test_lambda_statistics.py'
+removing 'tox-example-0.0.1' (and everything under it)

@@ -1,0 +1,15 @@
+action: py37, msg: getenv
+cwd: /Users/mahaakutty/code_space/repos/MyPublicRepo
+cmd: /Users/mahaakutty/code_space/repos/MyPublicRepo/.tox/py37/bin/python -m pip install unittest2
+Collecting unittest2
+  Using cached https://files.pythonhosted.org/packages/72/20/7f0f433060a962200b7272b8c12ba90ef5b903e218174301d0abfd523813/unittest2-1.1.0-py2.py3-none-any.whl
+Collecting traceback2
+  Using cached https://files.pythonhosted.org/packages/17/0a/6ac05a3723017a967193456a2efa0aa9ac4b51456891af1e2353bb9de21e/traceback2-1.4.0-py2.py3-none-any.whl
+Collecting argparse
+  Using cached https://files.pythonhosted.org/packages/f2/94/3af39d34be01a24a6e65433d19e107099374224905f1e0cc6bbe1fd22a2f/argparse-1.4.0-py2.py3-none-any.whl
+Collecting six>=1.4
+  Downloading https://files.pythonhosted.org/packages/65/26/32b8464df2a97e6dd1b656ed26b2c194606c16fe163c695a992b36c11cdf/six-1.13.0-py2.py3-none-any.whl
+Collecting linecache2
+  Using cached https://files.pythonhosted.org/packages/c7/a3/c5da2a44c85bfbb6eebcfc1dde24933f8704441b98fdde6528f4831757a6/linecache2-1.0.0-py2.py3-none-any.whl
+Installing collected packages: linecache2, traceback2, argparse, six, unittest2
+Successfully installed argparse-1.4.0 linecache2-1.0.0 six-1.13.0 traceback2-1.4.0 unittest2-1.1.0

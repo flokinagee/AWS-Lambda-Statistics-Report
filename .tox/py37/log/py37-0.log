@@ -1,0 +1,9 @@
+action: py37, msg: getenv
+cwd: /Users/mahaakutty/code_space/repos/MyPublicRepo/.tox
+cmd: /Users/mahaakutty/Library/homebrew/opt/python/bin/python3.7 -m virtualenv --no-download --python /Users/mahaakutty/Library/homebrew/opt/python/bin/python3.7 py37
+Already using interpreter /Users/mahaakutty/Library/homebrew/opt/python/bin/python3.7
+Using base prefix '/Users/mahaakutty/Library/homebrew/Cellar/python/3.7.1/Frameworks/Python.framework/Versions/3.7'
+New python executable in /Users/mahaakutty/code_space/repos/MyPublicRepo/.tox/py37/bin/python3.7
+Also creating executable in /Users/mahaakutty/code_space/repos/MyPublicRepo/.tox/py37/bin/python
+Installing setuptools, pip, wheel...
+done.

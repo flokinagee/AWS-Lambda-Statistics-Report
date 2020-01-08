@@ -1,0 +1,8 @@
+action: py37, msg: envreport
+cwd: /Users/mahaakutty/code_space/repos/MyPublicRepo
+cmd: /Users/mahaakutty/code_space/repos/MyPublicRepo/.tox/py37/bin/python -m pip freeze
+linecache2==1.0.0
+six==1.13.0
+tox-example==0.0.1
+traceback2==1.4.0
+unittest2==1.1.0

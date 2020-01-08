@@ -1,0 +1,15 @@
+action: py37, msg: installpkg
+cwd: /Users/mahaakutty/code_space/repos/MyPublicRepo
+cmd: /Users/mahaakutty/code_space/repos/MyPublicRepo/.tox/py37/bin/python -m pip install --exists-action w .tox/.tmp/package/1/tox-example-0.0.1.zip
+Processing ./.tox/.tmp/package/1/tox-example-0.0.1.zip
+Building wheels for collected packages: tox-example
+  Building wheel for tox-example (setup.py): started
+  Building wheel for tox-example (setup.py): finished with status 'done'
+  Created wheel for tox-example: filename=tox_example-0.0.1-cp37-none-any.whl size=3033 sha256=90d4b004c6bd35f98021f354426dd40514509f2c04dcea91c39b015dc435129f
+  Stored in directory: /Users/mahaakutty/Library/Caches/pip/wheels/4b/de/1e/a20f58942b751e06c0a67c4c9b67cc63da1164acc7482f5f8d
+Successfully built tox-example
+Installing collected packages: tox-example
+  Found existing installation: tox-example 0.0.1
+    Not uninstalling tox-example at /Users/mahaakutty/code_space/repos/MyPublicRepo, outside environment /Users/mahaakutty/code_space/repos/MyPublicRepo/.tox/py37/bin/..
+    Can't uninstall 'tox-example'. No files were found to uninstall.
+Successfully installed tox-example-0.0.1
